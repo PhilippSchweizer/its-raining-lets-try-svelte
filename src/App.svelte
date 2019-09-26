@@ -1,11 +1,25 @@
 <script>
-	export let name;
+  let count = 0;
+
+  function increment() {
+    count += 1;
+  }
+
+  function decrement() {
+    count -= 1;
+  }
 </script>
 
-<style>
-	h1 {
-		color: purple;
-	}
-</style>
+<div>
+  Current count:
+  <input bind:value={count} type="number" />
+</div>
 
-<h1>Hello {name}!</h1>
+{#if count > 5}
+  <p>⚠️ That's a little much, don't you think!</p>
+{:else if count < -5}
+  <p>👻 How low can you go!</p>
+{/if}
+
+<button on:click={increment}>Increment</button>
+<button on:click={decrement}>Decrement</button>
